@@ -24,5 +24,8 @@ class TenantUser extends Model
         return $this->hasOne('App\User');
     }
 
-    public function 
+    public function contentPackages()
+    {
+        return $this->hasManyThrough('App\ContentPackage', 'App\ContentPackageUsers');
+    }
 }
