@@ -23,4 +23,6 @@ class TenantUser extends Model
     {
         return $this->hasOne('App\User');
     }
+
+    public function 
 }
