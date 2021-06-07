@@ -1,9 +1,10 @@
+
 <?php
 /**
  * Created by PhpStorm.
  * User: sugarfixx
  * Date: 07/06/2021
- * Time: 08:49
+ * Time: 09:39
  */
 
 namespace App;
@@ -11,15 +12,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ContentPackage extends Model
+class TenantUser extends Model
 {
     public function tenant()
     {
-        return $this->belongsTo('App\Tenant');
+        $this->belongsTo('App\Tenant');
     }
 
-    public function content()
+    public function user()
     {
-        return $this->hasMany('App\Content');
+        return $this->hasOne('App\User');
     }
 }

@@ -1,4 +1,4 @@
-        <?php
+<?php
 
 namespace App;
 
@@ -29,4 +29,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected $hidden = [
         'password',
     ];
+
+    public function tenants()
+    {
+        return $this->hasManyThrough('App\Tenant', 'App\TenantUser');
+    }
 }
