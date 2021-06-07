@@ -18,7 +18,7 @@ class ContentPackageController extends Controller
     {
         $user = $this->getUser($request->bearerToken());
         $content = ContentPackage::with('content')
-            ->where(['tenant' =>$user->tenant, ])
+            ->where('content')
             ->get();
     }
 
