@@ -17,4 +17,9 @@ class Content extends Model
     {
         return $this->belongsToMany('App\ContentPackage');
     }
+
+    public function metadata()
+    {
+        return $this->hasMany('App\ContentMeta');
+    }
 }
