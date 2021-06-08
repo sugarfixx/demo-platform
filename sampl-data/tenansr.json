@@ -1,0 +1,38 @@
+{
+	"tenants" : [
+		{
+			"id" : "5fe14314-c82a-11eb-b8bc-0242ac130003",
+			"name": "Tenant One",
+			"contentPackages" :[
+				{
+					"id":"de0dcf8a-c836-11eb-b8bc-0242ac130003",
+					"name": "broadcaster",
+					"permission": "read",
+					"criteria" : [
+						{"publish_status" : "public"}
+					]
+				},
+				{
+					"id":"de0dd200-c836-11eb-b8bc-0242ac130003",
+					"name": "editor",
+					"permission": "all",
+					"criteria" : []
+				},
+			],
+		},
+		{
+			"id" : "5fe145a8-c82a-11eb-b8bc-0242ac130003",
+			"name": "Tenant Two",
+			"contentPackages" :  [
+				{
+					"id":"de0dd2f0-c836-11eb-b8bc-0242ac130003",
+					"name": "contribute",
+					"permission": "all",
+					"criteria" : [
+						{"ingest" : "contribute"}
+					]
+				}
+			],
+		}
+	]
+}

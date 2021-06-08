@@ -1,0 +1,49 @@
+{
+	"name" : "content Document",
+	"contents" :  [
+		{
+			"id": "46c7fbf4-c828-11eb-b8bc-0242ac130003",
+			"tenant_id" : "5fe14314-c82a-11eb-b8bc-0242ac130003",
+			"name": "My first content",
+			"image": "https://placekitten.com/g/240/135",
+			"metadata" : {
+				"publish_status" : "public",
+				"content_type" : "image",
+				"ingest" : "from source"
+			}
+		},
+		{
+			"id": "46c7fe88-c828-11eb-b8bc-0242ac130003",
+			"tenant_id" : "5fe14314-c82a-11eb-b8bc-0242ac130003",
+			"name": "My second content",
+			"image": "https://placekitten.com/g/240/135",
+			"metadata" : {
+				"publish_status" : "private",
+				"content_type" : "image",
+				"ingest" : "from source"
+			}
+		},
+		{
+			"id": "8d83aade-c828-11eb-b8bc-0242ac130003",
+			"tenant_id" : "5fe14314-c82a-11eb-b8bc-0242ac130003",
+			"name": "My third content",
+			"image": "https://placekitten.com/g/240/135",
+			"metadata" : {
+				"publish_status" : "public",
+				"content_type" : "image",
+				"ingest" : "from source"
+			}
+		},
+		{
+			"id": "8d83adea-c828-11eb-b8bc-0242ac130003",
+			"tenant_id" : "5fe145a8-c82a-11eb-b8bc-0242ac130003",
+			"name": "My fourth content",
+			"image": "https://placekitten.com/g/240/135",
+			"metadata" : {
+				"publish_status" : "private",
+				"content_type" : "image",
+				"ingest" : "contribute"
+			}
+		}
+	]
+}

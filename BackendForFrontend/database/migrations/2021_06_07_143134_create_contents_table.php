@@ -15,7 +15,12 @@ class CreateContentsTable extends Migration
     {
         Schema::create('contents', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->uuid('tenant_id');
+            $table->foreign('tenant_id')->references('id')->on('tenants');
             $table->string('name');
+            $table->string('image_url');
+            $table->json('document');
+            $table->json('commands');
             $table->timestamps();
         });
     }
