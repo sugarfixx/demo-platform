@@ -15,6 +15,8 @@ class CreateCriteriasTable extends Migration
     {
         Schema::create('criterias', function (Blueprint $table) {
             $table->uuid('id');
+            $table->uuid('content_package_id');
+            $table->foreign('content_package_id')->references('id')->on('content_packages');    
             $table->string('key');
             $table->string('value');
             $table->timestamps();
