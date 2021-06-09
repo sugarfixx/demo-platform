@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCriteriasTable extends Migration
+class CreateTenantUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateCriteriasTable extends Migration
      */
     public function up()
     {
-        Schema::create('criterias', function (Blueprint $table) {
-            $table->uuid('id');
-            $table->uuid('content_package_id');
-            $table->foreign('content_package_id')->references('id')->on('content_packages');
-            $table->string('key');
-            $table->string('value');
+        Schema::create('tenant_users', function (Blueprint $table) {
+            $table->uuid('tenant_id');
+            $table->foreign('tenant_id')->references('id')->on('tenants');
+            $table->uuid('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateCriteriasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('criterias');
+        Schema::dropIfExists('tenant_users');
     }
 }

@@ -17,6 +17,8 @@ class ContentPackageController extends Controller
     public function index(Request $request)
     {
         $user = $this->getUser($request->bearerToken());
+
+
         $content = ContentPackage::with('content')
             ->where('content')
             ->get();
