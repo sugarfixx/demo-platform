@@ -16,6 +16,7 @@ class CreateContentPackagesTable extends Migration
         Schema::create('content_packages', function (Blueprint $table) {
             $table->uuid('id');
             $table->string('name');
+            $
             $table->timestamps();
         });
     }
