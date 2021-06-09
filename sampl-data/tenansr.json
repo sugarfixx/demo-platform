@@ -1,4 +1,4 @@
-					{
+{
 	"tenants" : [
 		{
 			"id" : "5fe14314-c82a-11eb-b8bc-0242ac130003",
@@ -17,8 +17,8 @@
 					"name": "editor",
 					"permission": "all",
 					"criteria" : []
-				},
-			],
+				}
+			]
 		},
 		{
 			"id" : "5fe145a8-c82a-11eb-b8bc-0242ac130003",
@@ -32,7 +32,7 @@
 						{"ingest" : "contribute"}
 					]
 				}
-			],
+			]
 		}
 	]
 }
