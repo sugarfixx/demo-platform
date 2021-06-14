@@ -29,7 +29,8 @@ class SampleDataController extends Controller
 
     public function importContents()
     {
-        //
+        $contentsJson = $this->getContentsJson();
+        return response()->json(json_decode($contentsJson));
     }
 
     private function getUsersJson()
