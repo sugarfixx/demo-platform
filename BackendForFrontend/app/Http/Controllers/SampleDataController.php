@@ -9,12 +9,15 @@
 namespace App\Http\Controllers;
 
 
+use Illuminate\Support\Facades\Storage;
+
 class SampleDataController extends Controller
 {
 
     public function importUsers()
     {
-        //
+        $usersJson = $this->getUsersJson();
+        return response()->json(json_decode($usersJson));
     }
 
     public function importTenants()
@@ -25,6 +28,16 @@ class SampleDataController extends Controller
     public function importContents()
     {
         //
+    }
+
+    private function getUsersJson()
+    {
+        return Storage::disk('local')->get('users.json');
+    }
+
+    private function getTenantsJson()
+    {
+        return Storage::disk('local')->get('tenants.json');
     }
 
 

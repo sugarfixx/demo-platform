@@ -14,3 +14,7 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->group(['prefix' => "sample-data"], function () use ($router) {
+    $router->get('/import-users', "SampleDataController@importUsers");
+});
