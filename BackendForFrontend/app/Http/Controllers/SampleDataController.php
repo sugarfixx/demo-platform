@@ -22,7 +22,9 @@ class SampleDataController extends Controller
 
     public function importTenants()
     {
-        //
+        $tenantsJson = $this->getTenantsJson();
+        
+        return response()->json(json_decode($tenantsJson));
     }
 
     public function importContents()
