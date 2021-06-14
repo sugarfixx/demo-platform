@@ -1,0 +1,34 @@
+{
+  "name" : "users",
+  "users" : [
+    {
+      "id": "adf3c470-c90e-11eb-b8bc-0242ac130003",
+      "email": "john.doe@anonymous.net",
+      "password" : "secret",
+      "employer": "5fe14314-c82a-11eb-b8bc-0242ac130003",
+      "active": true
+    },
+    {
+      "id": "adf3c68c-c90e-11eb-b8bc-0242ac130003",
+      "email": "jane.doe@anonymous.net",
+      "password" : "secret",
+      "employer": "5fe14314-c82a-11eb-b8bc-0242ac130003",
+      "active": true
+    },
+    {
+      "id": "adf3c952-c90e-11eb-b8bc-0242ac130003",
+      "email": "average.white@stereotypical.net",
+      "password" : "secret",
+      "employer": "5fe145a8-c82a-11eb-b8bc-0242ac130003",
+      "active": true
+    },
+    {
+      "id": "adf3ca38-c90e-11eb-b8bc-0242ac130003",
+      "email": "averil.white@stereotypical.net",
+      "password" : "secret",
+      "employer": "5fe145a8-c82a-11eb-b8bc-0242ac130003",
+      "active": true
+    },
+
+  ]
+}

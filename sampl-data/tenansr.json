@@ -10,7 +10,8 @@
 					"permission": "read",
 					"criteria" : [
 						{"publish_status" : "public"}
-					]
+					],
+					"tenant_user":
 				},
 				{
 					"id":"de0dd200-c836-11eb-b8bc-0242ac130003",
