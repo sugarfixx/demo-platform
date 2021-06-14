@@ -14,7 +14,7 @@ class CreateContentPackageTakersTable extends Migration
     public function up()
     {
         Schema::create('content_package_takers', function (Blueprint $table) {
-            $table->uuid('package_id');
+            $table->uuid('package_id')->primary();
             $table->foreign('package_id')->references('id')->on('content_packages');
             $table->uuid('user_id');
             $table->foreign('user_id')->references('id')->on('users');

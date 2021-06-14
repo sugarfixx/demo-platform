@@ -14,7 +14,7 @@ class CreateTenantUsersTable extends Migration
     public function up()
     {
         Schema::create('tenant_users', function (Blueprint $table) {
-            $table->uuid('tenant_id');
+            $table->uuid('tenant_id')->primary();
             $table->foreign('tenant_id')->references('id')->on('tenants');
             $table->uuid('user_id');
             $table->foreign('user_id')->references('id')->on('users');

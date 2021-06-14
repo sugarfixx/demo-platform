@@ -14,7 +14,7 @@ class CreateCriteriasTable extends Migration
     public function up()
     {
         Schema::create('criterias', function (Blueprint $table) {
-            $table->uuid('id');
+            $table->uuid('id')->primary();
             $table->uuid('content_package_id');
             $table->foreign('content_package_id')->references('id')->on('content_packages');
             $table->string('key');

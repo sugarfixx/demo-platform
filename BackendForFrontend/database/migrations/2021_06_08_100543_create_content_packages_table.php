@@ -14,7 +14,7 @@ class CreateContentPackagesTable extends Migration
     public function up()
     {
         Schema::create('content_packages', function (Blueprint $table) {
-            $table->uuid('id');
+            $table->uuid('id')->primary();
             $table->string('name');
             $table->string('description');
             $table->string('permission');
