@@ -15,7 +15,7 @@ class TenantController extends Controller
 
     private $userId;
 
-    
+
     public function index()
     {
         //
