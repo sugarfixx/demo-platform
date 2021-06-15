@@ -9,7 +9,11 @@
 namespace App\Http\Controllers;
 
 
+use App\ContentPackage;
+use App\ContentPackageTaker;
+use App\Criteria;
 use App\Tenant;
+use App\TenantUser;
 use App\User;
 use Illuminate\Support\Facades\Storage;
 
@@ -55,9 +59,8 @@ class SampleDataController extends Controller
             foreach ($tenantsJson->tenants as $sampleTenant) {
                 $this->createTenant($sampleTenant);
             }
+            return response()->json(Tenant::all());
         }
-
-
     }
 
     public function viewSampleTenants()
@@ -72,6 +75,37 @@ class SampleDataController extends Controller
         $tenant = new Tenant();
         $tenant->id = $sampleTenant->id;
         $tenant->name = $sampleTenant->name;
+        if ($tenant->save())  {
+            foreach ($sampleTenant->tenantUsers as $sampleTenantUser) {
+                $tenantUser = new TenantUser();
+                $tenantUser->tenant_id = $tenant->id;
+                $tenantUser->user_id = $sampleTenantUser->user_id;
+                $tenantUser->save();
+            }
+            foreach ($sampleTenant->contentPackages as $sampleContentPackage) {
+                $contentPackage = new ContentPackage();
+                $contentPackage->id = $sampleContentPackage->id;
+                $contentPackage->name = $sampleContentPackage->name;
+                $contentPackage->description = "";
+                $contentPackage->permission  = $sampleContentPackage->persmission;
+                if ($contentPackage->save()) {
+                    foreach ($sampleContentPackage->criteria as $criteriaKey => $criteriaValue) {
+                        $criteria = new Criteria();
+                        $criteria->content_package_id =$contentPackage->id;
+                        $criteria->key = $criteriaKey;
+                        $criteria->value = $criteriaValue;
+                        $criteria->save();
+                    }
+                    foreach ($contentPackage->takers as $sampleTaker) {
+                        $taker = new ContentPackageTaker();
+                        $taker->content_package_id = $contentPackage->id;
+                        $taker->user_id = $sampleTaker->user_id;
+                        $taker->save();
+                    }
+                }
+            }
+        }
+        return true;
     }
 
     public function importContents()
