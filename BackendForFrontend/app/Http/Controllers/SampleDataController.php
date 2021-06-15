@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Tenant;
 use App\User;
 use Illuminate\Support\Facades\Storage;
 
@@ -47,9 +48,30 @@ class SampleDataController extends Controller
 
     public function importTenants()
     {
+        $tenantsJson = json_decode($this->getTenantsJson());
+        if (Tenant::all()->count() > 0)  {
+            return response()->json(Tenant::all());
+        } else  {
+            foreach ($tenantsJson->tenants as $sampleTenant) {
+                $this->createTenant($sampleTenant);
+            }
+        }
+
+
+    }
+
+    public function viewSampleTenants()
+    {
         $tenantsJson = $this->getTenantsJson();
 
         return response()->json(json_decode($tenantsJson));
+    }
+
+    private function createTenant($sampleTenant)
+    {
+        $tenant = new Tenant();
+        $tenant->id = $sampleTenant->id;
+        $tenant->name = $sampleTenant->name;
     }
 
     public function importContents()
