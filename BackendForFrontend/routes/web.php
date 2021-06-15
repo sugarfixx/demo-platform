@@ -15,6 +15,16 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
+$router->get('login', 'LoginController@login');
+$router->post('login', 'LoginController@auth');
+
+$router->group(['prefix' => 'api'], function () use ($router) {
+    $router->get('content', 'TenantConroller@index');
+    $router->get('content/{id}', 'TenantConroller@show');
+    $router->post('command', 'TenantConroller@process');
+});
+
+
 $router->group(['prefix' => "sample-data"], function () use ($router) {
     $router->get('/import-users', "SampleDataController@importUsers");
     $router->get('/view-users', "SampleDataController@viewSampleUsers");
