@@ -9,12 +9,28 @@
 namespace App\Http\Controllers;
 
 
+use App\User;
 use Illuminate\Support\Facades\Storage;
 
 class SampleDataController extends Controller
 {
 
     public function importUsers()
+    {
+        $usersJson = json_decode($this->getUsersJson());
+        foreach ($usersJson as $jsonUser){
+            $user = new User();
+            $user->id = $jsonUser->id;
+            $user->name = $jsonUser->name;
+            $user->password = $jsonUser->password;
+            $user->employer = $jsonUser->employer;
+            $user->ative = $jsonUser->active;
+            $user->save();
+        }
+        return response()->json(User::all());
+    }
+
+    public function viewSampleUsers()
     {
         $usersJson = $this->getUsersJson();
         return response()->json(json_decode($usersJson));
