@@ -18,16 +18,25 @@ class SampleDataController extends Controller
     public function importUsers()
     {
         $usersJson = json_decode($this->getUsersJson());
-        foreach ($usersJson as $jsonUser){
-            $user = new User();
-            $user->id = $jsonUser->id;
-            $user->name = $jsonUser->name;
-            $user->password = $jsonUser->password;
-            $user->employer = $jsonUser->employer;
-            $user->ative = $jsonUser->active;
-            $user->save();
+        if (User::all()->count() > 0) {
+            return response()->json(User::all());
+        } else {
+            foreach ($usersJson->users as $sampleUser){
+                $this->crateUser($sampleUser);
+            }
+            return response()->json(User::all());
         }
-        return response()->json(User::all());
+    }
+
+    public function crateUser($sampleUser)
+    {
+        $user = new User();
+        $user->id = $sampleUser->id;
+        $user->name = $sampleUser->name;
+        $user->password = $sampleUser->password;
+        $user->employer = $sampleUser->employer;
+        $user->ative = $sampleUser->active;
+        return $user->save();
     }
 
     public function viewSampleUsers()
