@@ -23,13 +23,13 @@ class SampleDataController extends Controller
             return response()->json(User::all());
         } else {
             foreach ($usersJson->users as $sampleUser){
-                $this->crateUser($sampleUser);
+                $this->createUser($sampleUser);
             }
             return response()->json(User::all());
         }
     }
 
-    public function crateUser($sampleUser)
+    public function createUser($sampleUser)
     {
         $user = new User();
         $user->id = $sampleUser->id;
