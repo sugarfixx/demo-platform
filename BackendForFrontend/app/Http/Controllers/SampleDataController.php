@@ -53,10 +53,11 @@ class SampleDataController extends Controller
     public function importTenants()
     {
         $tenantsJson = json_decode($this->getTenantsJson());
-        if (Tenant::all()->count() > 0)  {
+        if (Tenant::all()->count() > 3)  {
             return response()->json(Tenant::all());
         } else  {
             foreach ($tenantsJson->tenants as $sampleTenant) {
+
                 $this->createTenant($sampleTenant);
             }
             return response()->json(Tenant::all());
