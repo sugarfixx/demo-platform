@@ -12,8 +12,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 {
     use Authenticatable, Authorizable;
 
-    protected $primaryKey = 'uuid';
-
     protected $keyType = 'string';
 
     public $incrementing = false;
