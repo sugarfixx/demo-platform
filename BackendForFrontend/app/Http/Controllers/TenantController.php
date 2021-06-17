@@ -15,8 +15,31 @@ class TenantController extends Controller
 
     private $userId;
 
+    private $employerId;
+
+    private $hasContentPackage = false;
+
 
     public function index()
+    {
+        if ($this->tenantId === $this->employerId) {
+            $content = $this->getContentForEmployees();
+        } else {
+            if ($this->hasContentPackage) {
+                $content = $this->getContentForContentPackages();
+            } else {
+                $content = ['message' => "No content for you"];
+            }
+        }
+        return response()->json($content);
+    }
+
+    private function getContentForEmployees()
+    {
+        //
+    }
+
+    private function getContentForContentPackages()
     {
         //
     }
@@ -30,4 +53,6 @@ class TenantController extends Controller
     {
         //
     }
+
+
 }
