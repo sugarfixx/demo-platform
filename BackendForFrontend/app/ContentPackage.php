@@ -13,6 +13,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class ContentPackage extends Model
 {
+    protected $primaryKey = 'uuid';
+
+    protected $keyType = 'string';
+
+    public $incrementing = false;
+
     public function tenant()
     {
         return $this->belongsTo('App\Tenant');

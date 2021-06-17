@@ -13,6 +13,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class TenantUser extends Model
 {
+    protected $primaryKey = 'uuid';
+
+    protected $keyType = 'string';
+
+    public $incrementing = false;
+
     public function tenant()
     {
         $this->belongsTo('App\Tenant');

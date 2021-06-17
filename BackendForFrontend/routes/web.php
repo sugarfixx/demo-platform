@@ -22,9 +22,9 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('content', 'TenantConroller@index');
     $router->get('content/{id}', 'TenantConroller@show');
     $router->post('command', 'TenantConroller@process');
-    $router->group(['prefix' => 'resources'], function () use ($router) {
-       $router->get('tenant/{id}', 'Resources\TenantController@getTenant');
-        
+    $router->group(['prefix' => 'resources', 'namespace' =>'Resources'], function () use ($router) {
+       $router->get('tenant[/{id}]', 'TenantController@getTenant');
+
     });
 });
 
