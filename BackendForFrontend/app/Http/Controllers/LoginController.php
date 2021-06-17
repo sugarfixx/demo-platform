@@ -14,6 +14,10 @@ use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
+    private $userId;
+    private $employerId;
+    private $tenants;
+
     public function login()
     {
         return response()->json();
