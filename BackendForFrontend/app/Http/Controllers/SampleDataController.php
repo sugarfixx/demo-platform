@@ -58,7 +58,7 @@ class SampleDataController extends Controller
         } else  {
             foreach ($tenantsJson->tenants as $sampleTenant) {
 
-                $this->createTenantDryRun($sampleTenant);
+                $this->createTenant($sampleTenant);
             }
             return response()->json(Tenant::all());
         }
@@ -103,7 +103,7 @@ class SampleDataController extends Controller
                     $criteria->value = current($var);
                     $criteria->save();
                 }
-                foreach ($contentPackage->takers as $sampleTaker) {
+                foreach ($sampleContentPackage->takers as $sampleTaker) {
                     $taker = new ContentPackageTaker();
                     $taker->content_package_id = $contentPackage->id;
                     $taker->user_id = $sampleTaker->user_id;
@@ -112,18 +112,6 @@ class SampleDataController extends Controller
             }
         }
         return true;
-    }
-
-    private function createTenantDryRun($sampleTenant)
-    {
-        foreach ($sampleTenant->contentPackages as $sampleContentPackage) {
-            foreach ($sampleContentPackage->criteria as $key => $value) {
-
-
-                var_dump('This should be the key -'. $key  . ' and this will be its value -'. $value);
-                exit;
-            }
-        }
     }
 
     public function importContents()
