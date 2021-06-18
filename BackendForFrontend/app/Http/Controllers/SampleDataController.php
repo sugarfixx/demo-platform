@@ -95,19 +95,23 @@ class SampleDataController extends Controller
             $contentPackage->description = "";
             $contentPackage->permission  = $sampleContentPackage->permission;
             if ($contentPackage->save()) {
-                foreach ($sampleContentPackage->criteria as $key => $value) {
-                    $var = get_object_vars($value);
-                    $criteria = new Criteria();
-                    $criteria->content_package_id =$contentPackage->id;
-                    $criteria->key = key($var);
-                    $criteria->value = current($var);
-                    $criteria->save();
+                if (property_exists($sampleContentPackage,"criteria") && !empty($sampleContentPackage->criteria)) {
+                    foreach ( property_exists($sampleContentPackage->criteria) as $key => $value) {
+                        $var = get_object_vars($value);
+                        $criteria = new Criteria();
+                        $criteria->content_package_id =$contentPackage->id;
+                        $criteria->key = key($var);
+                        $criteria->value = current($var);
+                        $criteria->save();
+                    }
                 }
-                foreach ($sampleContentPackage->takers as $sampleTaker) {
-                    $taker = new ContentPackageTaker();
-                    $taker->package_id = $contentPackage->id;
-                    $taker->user_id = $sampleTaker->user_id;
-                    $taker->save();
+                if ( property_exists($sampleContentPackage,'takers') && !empty($sampleContentPackage->takers)) {
+                    foreach ($sampleContentPackage->takers as $sampleTaker) {
+                        $taker = new ContentPackageTaker();
+                        $taker->package_id = $contentPackage->id;
+                        $taker->user_id = $sampleTaker->user_id;
+                        $taker->save();
+                    }
                 }
             }
         }
