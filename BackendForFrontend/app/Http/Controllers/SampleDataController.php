@@ -91,12 +91,13 @@ class SampleDataController extends Controller
         foreach ($sampleTenant->contentPackages as $sampleContentPackage) {
             $contentPackage = new ContentPackage();
             $contentPackage->id = $sampleContentPackage->id;
+            $contentPackage->tenant_id = $tenant->id;
             $contentPackage->name = $sampleContentPackage->name;
             $contentPackage->description = "";
             $contentPackage->permission  = $sampleContentPackage->permission;
             if ($contentPackage->save()) {
                 if (property_exists($sampleContentPackage,"criteria") && !empty($sampleContentPackage->criteria)) {
-                    foreach ( property_exists($sampleContentPackage->criteria) as $key => $value) {
+                    foreach ($sampleContentPackage->criteria as $key => $value) {
                         $var = get_object_vars($value);
                         $criteria = new Criteria();
                         $criteria->content_package_id =$contentPackage->id;

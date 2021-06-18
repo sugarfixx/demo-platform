@@ -15,6 +15,8 @@ class CreateContentPackagesTable extends Migration
     {
         Schema::create('content_packages', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->uuid('tenant_id');
+            $table->foreign('tenant_id')->references('id')->on('tenants');
             $table->string('name');
             $table->string('description');
             $table->string('permission');

@@ -17,7 +17,7 @@ class TenantController extends Controller
     public function getTenant($id = null)
     {
         if ($id) {
-            return response()->json(Tenant::find($id));
+            return response()->json(Tenant::with('contentPackages','employees' ,'users')->find($id));
         } else {
             return response()->json(Tenant::all());
         }

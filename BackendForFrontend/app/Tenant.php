@@ -32,6 +32,11 @@ class Tenant extends Model
 
     public function contentPackages()
     {
-        return $this->hasMany('App\ContentPackages');
+        return $this->hasMany('App\ContentPackage', 'tenant_id', 'id');
+    }
+
+    public function employees()
+    {
+        return $this->hasMany('App\User','employer', 'id');
     }
 }
