@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Model;
 class Content extends Model
 {
     use Uuids;
-    
+
     protected $keyType = 'string';
 
     public $incrementing = false;

@@ -16,8 +16,7 @@ class CreateContentMetadatasTable extends Migration
         Schema::create('content_metadatas', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('content_id');
-            $table->foreign('content_id')
-                ->references('id')->on('contents');
+            $table->foreign('content_id')->references('id')->on('contents');
             $table->string('key');
             $table->string('value');
             $table->timestamps();

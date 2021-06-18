@@ -37,10 +37,10 @@ class SampleDataController extends Controller
     {
         $user = new User();
         $user->id = $sampleUser->id;
-        $user->name = $sampleUser->name;
+        $user->email = $sampleUser->email;
         $user->password = $sampleUser->password;
         $user->employer = $sampleUser->employer;
-        $user->ative = $sampleUser->active;
+        $user->active = $sampleUser->active;
         return $user->save();
     }
 
@@ -58,7 +58,7 @@ class SampleDataController extends Controller
         } else  {
             foreach ($tenantsJson->tenants as $sampleTenant) {
 
-                $this->createTenant($sampleTenant);
+                $this->createTenantDryRun($sampleTenant);
             }
             return response()->json(Tenant::all());
         }
@@ -93,13 +93,14 @@ class SampleDataController extends Controller
             $contentPackage->id = $sampleContentPackage->id;
             $contentPackage->name = $sampleContentPackage->name;
             $contentPackage->description = "";
-            $contentPackage->permission  = $sampleContentPackage->persmission;
+            $contentPackage->permission  = $sampleContentPackage->permission;
             if ($contentPackage->save()) {
-                foreach ($sampleContentPackage->criteria as $criteriaKey => $criteriaValue) {
+                foreach ($sampleContentPackage->criteria as $key => $value) {
+                    $var = get_object_vars($value);
                     $criteria = new Criteria();
                     $criteria->content_package_id =$contentPackage->id;
-                    $criteria->key = $criteriaKey;
-                    $criteria->value = $criteriaValue;
+                    $criteria->key = key($var);
+                    $criteria->value = current($var);
                     $criteria->save();
                 }
                 foreach ($contentPackage->takers as $sampleTaker) {
@@ -111,6 +112,18 @@ class SampleDataController extends Controller
             }
         }
         return true;
+    }
+
+    private function createTenantDryRun($sampleTenant)
+    {
+        foreach ($sampleTenant->contentPackages as $sampleContentPackage) {
+            foreach ($sampleContentPackage->criteria as $key => $value) {
+
+
+                var_dump('This should be the key -'. $key  . ' and this will be its value -'. $value);
+                exit;
+            }
+        }
     }
 
     public function importContents()

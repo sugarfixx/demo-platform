@@ -13,7 +13,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 {
     use Authenticatable, Authorizable;
 
-    use Uuids;
+    // use Uuids;
 
     protected $keyType = 'string';
 
