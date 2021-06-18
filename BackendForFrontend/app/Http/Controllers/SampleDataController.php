@@ -105,7 +105,7 @@ class SampleDataController extends Controller
                 }
                 foreach ($sampleContentPackage->takers as $sampleTaker) {
                     $taker = new ContentPackageTaker();
-                    $taker->content_package_id = $contentPackage->id;
+                    $taker->package_id = $contentPackage->id;
                     $taker->user_id = $sampleTaker->user_id;
                     $taker->save();
                 }
