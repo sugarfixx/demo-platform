@@ -24,6 +24,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->post('command', 'TenantConroller@process');
     $router->group(['prefix' => 'resources', 'namespace' =>'Resources'], function () use ($router) {
        $router->get('tenant[/{id}]', 'TenantController@getTenant');
+        $router->get('user[/{id}]', 'UserController@getUser');
 
     });
 });
