@@ -9,10 +9,13 @@
 namespace App;
 
 
+use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Model;
 
 class ContentPackageUser extends Model
 {
+    use Uuids;
+
     protected $keyType = 'string';
 
     public $incrementing = false;

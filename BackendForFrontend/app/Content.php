@@ -9,10 +9,17 @@
 namespace App\Providers;
 
 
+use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Model;
 
 class Content extends Model
 {
+    use Uuids;
+    
+    protected $keyType = 'string';
+
+    public $incrementing = false;
+
     public function package()
     {
         return $this->belongsToMany('App\ContentPackage');

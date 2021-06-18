@@ -9,10 +9,17 @@
 namespace App;
 
 
+use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Model;
 
 class ContentMeta extends Model
 {
+    use Uuids;
+
+    protected $keyType = 'string';
+
+    public $incrementing = false;
+
     public function content()
     {
         return $this->belongsTo('App\Content');
