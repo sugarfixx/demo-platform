@@ -131,13 +131,14 @@ class SampleDataController extends Controller
     {
         $contents = json_decode($this->getContentsJson())->contents;
         $storedContent = Content::all();
+        $imported = [];
         if (count($storedContent) > 1) {
             foreach ($contents as $content) {
-
+                $imported[] = $this->createContent($content);
             }
         }
 
-        return response()->json($contents);
+        return response()->json($imported);
     }
 
     private function createContent($sampleContent)
@@ -156,7 +157,7 @@ class SampleDataController extends Controller
                 $contentMeta->save();
             }
         }
-        return response()->json(Content::with('metadata')->all());
+        return response()->json($content);
 
     }
 
