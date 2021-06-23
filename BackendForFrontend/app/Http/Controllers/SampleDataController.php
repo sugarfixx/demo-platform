@@ -9,9 +9,11 @@
 namespace App\Http\Controllers;
 
 
+use App\ContentMeta;
 use App\ContentPackage;
 use App\ContentPackageTaker;
 use App\Criteria;
+use App\Content;
 use App\Tenant;
 use App\TenantUser;
 use App\User;
@@ -119,10 +121,43 @@ class SampleDataController extends Controller
         return true;
     }
 
-    public function importContents()
+    public function viewContents()
     {
         $contentsJson = $this->getContentsJson();
         return response()->json(json_decode($contentsJson));
+    }
+
+    public function importContents()
+    {
+        $contents = json_decode($this->getContentsJson())->contents;
+        $storedContent = Content::all();
+        if (count($storedContent) > 1) {
+            foreach ($contents as $content) {
+
+            }
+        }
+
+        return response()->json($contents);
+    }
+
+    private function createContent($sampleContent)
+    {
+        $content = new Content();
+        $content->id = $sampleContent->id;
+        $content->tenant_id = $sampleContent->tenant_id;
+        $content->name = $sampleContent->name;
+        $content->image = $sampleContent->imahge;
+        if ($content->save()) {
+            foreach ($content->metadata as $metadataKey => $metadataValue) {
+                $contentMeta = new ContentMeta();
+                $contentMeta->content_id = $content->contentId;
+                $contentMeta->key = $metadataKey;
+                $contentMeta->value = $metadataValue;
+                $contentMeta->save();
+            }
+        }
+        return response()->json(Content::with('metadata')->all());
+
     }
 
     private function getUsersJson()
