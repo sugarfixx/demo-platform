@@ -35,5 +35,6 @@ $router->group(['prefix' => "sample-data"], function () use ($router) {
     $router->get('/view-users', "SampleDataController@viewSampleUsers");
     $router->get('/import-tenants', "SampleDataController@importTenants");
     $router->get('/view-tenants', "SampleDataController@viewSampleTenants");
+    $router->get('/view-contents', "SampleDataController@viewContents");
     $router->get('/import-contents', "SampleDataController@importContents");
 });
