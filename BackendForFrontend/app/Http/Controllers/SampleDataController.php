@@ -147,7 +147,7 @@ class SampleDataController extends Controller
         $content->id = $sampleContent->id;
         $content->tenant_id = $sampleContent->tenant_id;
         $content->name = $sampleContent->name;
-        $content->image = $sampleContent->imahge;
+        $content->image = $sampleContent->image;
         if ($content->save()) {
             foreach ($content->metadata as $metadataKey => $metadataValue) {
                 $contentMeta = new ContentMeta();
