@@ -9,6 +9,11 @@
 namespace App\Http\Controllers;
 
 
+use App\Content;
+use App\Tenant;
+use App\User;
+use Illuminate\Http\Request;
+
 class TenantController extends Controller
 {
     private $tenantId;
@@ -17,16 +22,27 @@ class TenantController extends Controller
 
     private $employerId;
 
-    private $hasContentPackage = false;
+    private $hasContentPackage = true;
 
-    public function __construct()
+    public function __construct(Request $request)
     {
-        //
+        $accessData = explode( '.',$request->bearerToken());
+        $this->userId = $accessData[0];
+        $this->tenantId = $accessData[1];
+        $this->setEmployer();
+    }
+
+    private function setEmployer()
+    {
+        if (isset($this->userId)) {
+            $user = User::find($this->userId);
+            $this->employerId = $user->employer;
+        }
     }
 
     public function index()
     {
-        var_dump('hello'); exit;
+
         if ($this->tenantId === $this->employerId) {
             $content = $this->getContentForEmployees();
         } else {
@@ -41,12 +57,12 @@ class TenantController extends Controller
 
     private function getContentForEmployees()
     {
-        //
+        return response()->json(Content::where('tenant_id',$this->tenantId)->get());
     }
 
     private function getContentForContentPackages()
     {
-        //
+        return Tenant::find($this->tenantId);
     }
 
     public function show()
