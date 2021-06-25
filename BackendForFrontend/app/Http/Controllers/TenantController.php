@@ -19,9 +19,14 @@ class TenantController extends Controller
 
     private $hasContentPackage = false;
 
+    public function __construct()
+    {
+        //
+    }
 
     public function index()
     {
+        var_dump('hello'); exit;
         if ($this->tenantId === $this->employerId) {
             $content = $this->getContentForEmployees();
         } else {

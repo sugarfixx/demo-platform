@@ -19,8 +19,8 @@ $router->get('login', 'LoginController@login');
 $router->post('login', 'LoginController@auth');
 
 $router->group(['prefix' => 'api'], function () use ($router) {
-    $router->get('content', 'TenantConroller@index');
-    $router->get('content/{id}', 'TenantConroller@show');
+    $router->get('content', 'TenantController@index');
+    $router->get('content/{id}', 'TenantController@show');
     $router->post('command', 'TenantConroller@process');
     $router->group(['prefix' => 'resources', 'namespace' =>'Resources'], function () use ($router) {
        $router->get('tenant[/{id}]', 'TenantController@getTenant');
