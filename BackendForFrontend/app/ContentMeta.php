@@ -16,6 +16,8 @@ class ContentMeta extends Model
 {
     use Uuids;
 
+    protected $table = "content_metadatas";
+
     protected $keyType = 'string';
 
     public $incrementing = false;

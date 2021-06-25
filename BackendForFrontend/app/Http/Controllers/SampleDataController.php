@@ -132,7 +132,8 @@ class SampleDataController extends Controller
         $contents = json_decode($this->getContentsJson())->contents;
         $storedContent = Content::all();
         $imported = [];
-        if (count($storedContent) > 1) {
+
+        if (count($storedContent) > 0) {
             foreach ($contents as $content) {
                 $imported[] = $this->createContent($content);
             }
@@ -147,17 +148,20 @@ class SampleDataController extends Controller
         $content->id = $sampleContent->id;
         $content->tenant_id = $sampleContent->tenant_id;
         $content->name = $sampleContent->name;
-        $content->image = $sampleContent->image;
+        $content->image_url = $sampleContent->image;
+        $content->document = '{}';
+        $content->commands = '{"delete" : true, "export": true}';
         if ($content->save()) {
-            foreach ($content->metadata as $metadataKey => $metadataValue) {
+            foreach ($sampleContent->metadata as $metadataKey => $metadataValue) {
                 $contentMeta = new ContentMeta();
-                $contentMeta->content_id = $content->id;
+                $contentMeta->content_id = $sampleContent->id;
                 $contentMeta->key = $metadataKey;
                 $contentMeta->value = $metadataValue;
                 $contentMeta->save();
             }
         }
-        return response()->json($content);
+
+        return $content;
 
     }
 

@@ -17,7 +17,8 @@ class ContentController extends Controller
     public function getContent($id = null)
     {
         if ($id) {
-            return response()->json(Content::with('metadata', 'contentPackages','employees' ,'users')->find($id));
+            return response()->json(Content::with('metadata')->find($id));
+            return response()->json(Content::with('metadata')->find($id));
         } else {
             return response()->json(Content::all());
         }
