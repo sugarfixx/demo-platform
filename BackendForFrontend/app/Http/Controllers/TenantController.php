@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 
 use App\Content;
+use App\ContentPackage;
 use App\ContentPackageTaker;
 use App\Tenant;
 use App\User;
@@ -77,7 +78,14 @@ class TenantController extends Controller
 
     private function getContentForContentPackages()
     {
-        return Tenant::find($this->tenantId);
+        $contentPackages = ContentPackage::with('criteria')
+            ->where('tenant_id', $this->tenantId)
+            ->whereHas('taker', function (Builder $q)  {
+                $q->where('user_id', $this->userId);
+            })
+            ->get();
+
+        return $contentPackages;
     }
 
     public function show()

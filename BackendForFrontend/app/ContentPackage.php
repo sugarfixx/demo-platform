@@ -29,4 +29,14 @@ class ContentPackage extends Model
     {
         return $this->hasMany('App\Content');
     }
+
+    public function criteria()
+    {
+        return $this->hasMany('App\Criteria');
+    }
+
+    public function taker()
+    {
+        return $this->hasMany('App\ContentPackageTaker', 'package_id', 'id');
+    }
 }
