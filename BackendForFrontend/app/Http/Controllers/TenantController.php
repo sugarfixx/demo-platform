@@ -10,8 +10,10 @@ namespace App\Http\Controllers;
 
 
 use App\Content;
+use App\ContentPackageTaker;
 use App\Tenant;
 use App\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class TenantController extends Controller
@@ -22,14 +24,15 @@ class TenantController extends Controller
 
     private $employerId;
 
-    private $hasContentPackage = true;
+    private $hasContentPackage = false;
 
     public function __construct(Request $request)
     {
-        $accessData = explode( '.',$request->bearerToken());
+        $accessData = explode('.', $request->bearerToken());
         $this->userId = $accessData[0];
         $this->tenantId = $accessData[1];
         $this->setEmployer();
+        $this->setHasContentPackages();
     }
 
     private function setEmployer()
@@ -37,6 +40,18 @@ class TenantController extends Controller
         if (isset($this->userId)) {
             $user = User::find($this->userId);
             $this->employerId = $user->employer;
+        }
+    }
+
+    private function setHasContentPackages()
+    {
+        if ($this->tenantId === $this->employerId) {
+            $this->hasContentPackage = false;
+        } else {
+            $this->hasContentPackage = ContentPackageTaker::where('user_id', $this->userId)
+                ->whereHas('contentPackage', function (Builder $q) {
+                $q->where('tenant_id', $this->tenantId);
+            })->first();
         }
     }
 

@@ -22,7 +22,7 @@ class ContentPackageTaker extends Model
 
     public function contentPackage()
     {
-        return $this->belongsTo('App\ContentPackage');
+        return $this->belongsTo('App\ContentPackage', 'package_id', 'id');
     }
 
     public function user()
