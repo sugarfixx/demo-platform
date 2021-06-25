@@ -84,8 +84,18 @@ class TenantController extends Controller
                 $q->where('user_id', $this->userId);
             })
             ->get();
+        $contentData = [];
 
-        return $contentPackages;
+        foreach ($contentPackages as $cp) {
+            foreach ($cp->criteria as $criteria) {
+                $contentData[] = Content::whereHas('metadata', function (Builder $q) use ($criteria) {
+                    $q->where('key',$criteria->key)
+                        ->where('value',$criteria->value);
+                })->get();
+            }
+        }
+
+        return $contentData;
     }
 
     public function show()
