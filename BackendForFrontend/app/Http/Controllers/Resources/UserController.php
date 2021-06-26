@@ -17,7 +17,7 @@ class UserController extends Controller
     public function getUser($id = null)
     {
         if ($id) {
-            return response()->json(User::find($id));
+            return response()->json(User::with('homeTenant', 'remoteTenants')->find($id));
         } else {
             return response()->json(User::all());
         }

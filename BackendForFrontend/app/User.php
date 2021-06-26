@@ -35,8 +35,13 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'password',
     ];
 
-    public function tenants()
+    public function homeTenant()
     {
-        return $this->hasManyThrough('App\Tenant', 'App\TenantUser');
+        return $this->hasOne('App\Tenant','id','employer');
+    }
+
+    public function remoteTenants()
+    {
+        return $this->hasManyThrough('App\Tenant', 'App\TenantUser','user_id','id', 'id', 'tenant_id');
     }
 }
