@@ -9,6 +9,9 @@ aggregate content packages criteria
 aggregate content
 aggregate contentMetadata
 
+## Organization Service
+only organization
+
 ## User service
 only users
 topic:user
