@@ -1,15 +1,15 @@
 import React from 'react';
 const List = (props) => {
-    const { repos } = props;
-    if (!repos || repos.length === 0) return <p>No repos, sorry</p>;
+    const { users } = props;
+    if (!users || users.length === 0) return <p>No users, sorry</p>;
     return (
         <ul>
-            <h2 className='list-head'>Available Public Repositories</h2>
-            {repos.map((repo) => {
+            <h2 className='list-head'>Available Users</h2>
+            {users.map((user) => {
                 return (
-                    <li key={repo.id} className='list'>
-                        <span className='repo-text'>{repo.name} </span>
-                        <span className='repo-description'>{repo.description}</span>
+                    <li key={user.id} className='list'>
+                        <span className='repo-text'>{user.email} </span>
+                        <span className='repo-description'>{user.employer}</span>
                     </li>
                 );
             })}

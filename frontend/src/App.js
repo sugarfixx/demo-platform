@@ -6,25 +6,25 @@ function App() {
     const ListLoading = withListLoading(List);
     const [appState, setAppState] = useState({
         loading: false,
-        repos: null,
+        users: null,
     });
 
     useEffect(() => {
         setAppState({ loading: true });
-        const apiUrl = `https://api.github.com/users/hacktivist123/repos`;
+        const apiUrl = `http://beffe.test/api/resources/user`;
         fetch(apiUrl)
             .then((res) => res.json())
-            .then((repos) => {
-                setAppState({ loading: false, repos: repos });
+            .then((users) => {
+                setAppState({ loading: false, users: users });
             });
     }, [setAppState]);
     return (
         <div className='App'>
             <div className='container'>
-                <h1>My Repositories</h1>
+                <h1>App Users</h1>
             </div>
             <div className='repo-container'>
-                <ListLoading isLoading={appState.loading} repos={appState.repos} />
+                <ListLoading isLoading={appState.loading} users={appState.users} />
             </div>
             <footer>
                 <div className='footer'>
