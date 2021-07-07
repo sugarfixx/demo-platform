@@ -1,41 +1,33 @@
-import React, { useEffect, useState } from 'react';
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import User from './components/User';
+import Tenant from './components/Tenant';
+import Content from './components/Content';
+import UserDetail from './components/UserDetail';
 import './App.css';
-import List from './components/List';
-import withListLoading from './components/withListLoading';
-function App() {
-    const ListLoading = withListLoading(List);
-    const [appState, setAppState] = useState({
-        loading: false,
-        users: null,
-    });
 
-    useEffect(() => {
-        setAppState({ loading: true });
-        const apiUrl = `http://beffe.test/api/resources/user`;
-        fetch(apiUrl)
-            .then((res) => res.json())
-            .then((users) => {
-                setAppState({ loading: false, users: users });
-            });
-    }, [setAppState]);
-    return (
-        <div className='App'>
-            <div className='container'>
-                <h1>App Users</h1>
-            </div>
-            <div className='repo-container'>
-                <ListLoading isLoading={appState.loading} users={appState.users} />
-            </div>
-            <footer>
-                <div className='footer'>
-                    Built{' '}
-                    <span role='img' aria-label='love'>
-            💚
-          </span>{' '}
-                    with by Shedrack Akintayo
+class App extends Component  {
+    render() {
+        return (
+            <Router>
+                <div>
+                    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                        <ul className="navbar-nav mr-auto">
+                            <li><Link to={'/'} className="nav-link"> Home </Link></li>
+                            <li><Link to={'/tenant'} className="nav-link">Tenant</Link></li>
+                            <li><Link to={'/content'} className="nav-link">Content</Link></li>
+                        </ul>
+                    </nav>
+                    <hr />
+                    <Switch>
+                        <Route exact path='/' component={User} />
+                        <Route exact path='user/:id' component={UserDetail}/>
+                        <Route path='/tenant' component={Tenant} />
+                        <Route path='/content' component={Content} />
+                    </Switch>
                 </div>
-            </footer>
-        </div>
-    );
+            </Router>
+        )
+    }
 }
 export default App;

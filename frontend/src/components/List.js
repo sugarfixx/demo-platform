@@ -1,4 +1,5 @@
 import React from 'react';
+import {useParams, Link} from 'react-router-dom';
 const List = (props) => {
     const { users } = props;
     if (!users || users.length === 0) return <p>No users, sorry</p>;
@@ -8,8 +9,9 @@ const List = (props) => {
             {users.map((user) => {
                 return (
                     <li key={user.id} className='list'>
-                        <span className='repo-text'>{user.email} </span>
-                        <span className='repo-description'>{user.employer}</span>
+                        <Link to={`/user/${user.id}`}>
+                            <span className='repo-text'>{user.email} </span>
+                        </Link>
                     </li>
                 );
             })}
