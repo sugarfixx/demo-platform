@@ -1,32 +1,32 @@
 import React, { Component } from 'react';
-
+import UserList from './UserList';
 const url = "http://beffe.test/api/resources/user/";
 
-class UserDetail extends Component {
+class UserScreen extends Component {
     constructor(props) {
         super(props);
 
-        this.state={user : ''}
+        this.state={users : ''}
     }
+
     render() {
-        console.log(this.state.user)
-        const {params} = this.props.match
         return (
             <React.Fragment>
-                <h1>User details for user {params.id}</h1>
+                <h1>User</h1>
+                <UserList dataList={this.state.users} />
             </React.Fragment>
         )
     }
 
     componentDidMount() {
-        fetch(url + this.props.match.params.id, {
+        fetch(url, {
             Method : 'GET'
         }).then((res)  => res.json())
             .then((data) => {
-                this.setState({user:data})
+                this.setState({users:data})
             })
     }
-
 }
 
-export  default  UserDetail;
+
+export default UserScreen
