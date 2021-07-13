@@ -8,7 +8,11 @@ const TenantList = (props) => {
             return dataList.map((item) => {
                 return (
                     <li key={item.id}>
-                        <Link to={`/content/` + item.id + '.' + user}>
+                        <Link to={{
+                            pathname: '/content/',
+                            state: { bearer: item.id + '.' + user}
+                            }
+                        }>
                             <span>{item.name}</span>
                         </Link>
                     </li>

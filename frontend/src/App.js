@@ -24,7 +24,7 @@ class App extends Component  {
                         <Route exact path='/' component={UserScreen} />
                         <Route path="/user/:id" component={UserDetail}/>
                         <Route path='/tenant' component={Tenant} />
-                        <Route path='/content/:token' component={Content} />
+                        <Route path='/content' component={Content} />
                     </Switch>
                 </div>
             </Router>

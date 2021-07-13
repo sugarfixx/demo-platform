@@ -20,7 +20,12 @@ class UserDetail extends Component {
             <React.Fragment>
                 <h1>User details for user {this.state.user.email}</h1>
                 <span>Home Tenant:
-                    <Link to={'/content/'} key={this.state.homeTenant.id}>
+                    <Link to={{
+                        pathname: '/content/',
+                        state: { bearer: this.state.homeTenant.id + '.' + this.state.user.id}
+                    }}
+                          key={this.state.homeTenant.id}
+                    >
                         <span>{this.state.homeTenant.name}</span>
                     </Link>
 

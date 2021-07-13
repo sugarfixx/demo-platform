@@ -15,7 +15,7 @@ class Content extends Component {
         );
     }
     componentDidMount() {
-        console.log(this.props.match.params.token)
+        console.log(this.props.location.state.bearer)
     }
 }
 
