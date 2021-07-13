@@ -1,16 +1,15 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-const UserList = (props) => {
-
+const TenantList = (props) => {
     const renderList = ({dataList}) => {
         console.log(dataList);
-        if (dataList) {
+        if (dataList && dataList.length > 0) {
             return dataList.map((item) => {
                 return (
                     <li key={item.id}>
-                        <Link to={`/user/${item.id}`}>
-                            <span>{item.email}</span>
+                        <Link to={`/content`}>
+                            <span>{item.name}</span>
                         </Link>
                     </li>
                 )
@@ -19,12 +18,12 @@ const UserList = (props) => {
     }
     return (
         <div>
+            <span>Other Tenants</span>
             <ul>
                 { renderList(props) }
             </ul>
-
         </div>
     )
 }
 
-export default UserList;
+export default TenantList;
