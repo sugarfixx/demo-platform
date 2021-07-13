@@ -2,13 +2,13 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 const TenantList = (props) => {
-    const renderList = ({dataList}) => {
+    const renderList = ({dataList, user}) => {
         console.log(dataList);
         if (dataList && dataList.length > 0) {
             return dataList.map((item) => {
                 return (
                     <li key={item.id}>
-                        <Link to={`/content`}>
+                        <Link to={`/content/` + item.id + '.' + user}>
                             <span>{item.name}</span>
                         </Link>
                     </li>

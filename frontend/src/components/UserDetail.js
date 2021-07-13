@@ -25,7 +25,7 @@ class UserDetail extends Component {
                     </Link>
 
                 </span>
-                <TenantList dataList={this.state.remoteTenants}/>
+                <TenantList dataList={this.state.remoteTenants} user={this.state.user.id}/>
             </React.Fragment>
         )
     }
