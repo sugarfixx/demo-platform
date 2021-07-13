@@ -10,7 +10,7 @@ const TenantList = (props) => {
                     <li key={item.id}>
                         <Link to={{
                             pathname: '/content/',
-                            state: { bearer: item.id + '.' + user}
+                            state: { bearer: user + '.' + item.id}
                             }
                         }>
                             <span>{item.name}</span>

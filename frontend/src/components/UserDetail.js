@@ -22,7 +22,7 @@ class UserDetail extends Component {
                 <span>Home Tenant:
                     <Link to={{
                         pathname: '/content/',
-                        state: { bearer: this.state.homeTenant.id + '.' + this.state.user.id}
+                        state: { bearer: this.state.user.id + '.' + this.state.homeTenant.id}
                     }}
                           key={this.state.homeTenant.id}
                     >
