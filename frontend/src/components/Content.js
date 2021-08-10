@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ContentList from './ContentList';
 const url = "http://beffe.test/api/content";
 class Content extends Component {
     constructor(props) {
@@ -9,24 +10,25 @@ class Content extends Component {
 
     render() {
         return (
-            <div>
+            <React.Fragment>
                 <h2>Content</h2>
-            </div>
+                <ContentList dataList={this.state.data}/>
+            </React.Fragment>
         );
     }
     componentDidMount() {
-        console.log(this.props.location.state.bearer)
+        // console.log(this.props.location.state.bearer)
         fetch(url, {
             method : 'GET',
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": "Bearer " + this.props.location.state.bearer
             },
-
         }).then((res)  => res.json())
-            .then((data) => {
-                console.log(data)
-                this.setState({data:data})
+            .then((result) => {
+                this.setState({
+                    data: result
+                })
             })
     }
 }

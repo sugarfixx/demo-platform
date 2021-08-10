@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 const UserList = (props) => {
 
     const renderList = ({dataList}) => {
-        console.log(dataList);
+        // console.log(dataList);
         if (dataList) {
             return dataList.map((item) => {
                 return (
