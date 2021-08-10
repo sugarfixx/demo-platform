@@ -1,37 +1,45 @@
 import React, { Component } from 'react';
 import ContentList from './ContentList';
 const url = "http://beffe.test/api/content";
-class Content extends Component {
+
+class ContentScreen extends Component {
     constructor(props) {
         super(props);
 
-        this.state={content : ''}
+        this.state={contents : ''}
     }
 
     render() {
         return (
             <React.Fragment>
-                <h2>Content</h2>
-                <ContentList dataList={this.state.content}/>
+                <h1>Contents</h1>
+                <p>Select content to view details</p>
+                <ContentList dataList={this.state.contents} />
             </React.Fragment>
-        );
+        )
     }
+
     componentDidMount() {
-        // console.log(this.props.location.state.bearer)
         fetch(url, {
-            method : 'GET',
+            Method : 'GET',
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": "Bearer " + this.props.location.state.bearer
-            },
+            }
         }).then((res)  => res.json())
             .then((data) => {
-                console.log('result',data);
-                this.setState({
-                    content: data
-                })
+                if (data.original) {
+                    let content = data.original;
+
+                    this.setState({contents:content })
+                }
+                else {
+                    this.setState({contents:data[0]})
+                }
+
             })
     }
 }
 
-export default Content;
+
+export default ContentScreen

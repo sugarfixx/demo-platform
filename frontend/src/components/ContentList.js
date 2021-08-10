@@ -2,12 +2,21 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 const ContentList = (props) => {
+
     const renderList = ({dataList}) => {
-        if (dataList && dataList.length > 0) {
-            return dataList.map((item) => {
+        console.log(dataList);
+        if (dataList) {
+            return dataList.map((content) => {
                 return (
-                    <li key={item.id}>
-                        <span>{item.name}</span>
+                    <li key={content.id}>
+                        <div>
+                            <img src={content.image_url} alt={content.name}/>
+                            <br />
+                            {content.name}
+                            <br/>
+                            {content.commands}
+                        </div>
+
                     </li>
                 )
             })

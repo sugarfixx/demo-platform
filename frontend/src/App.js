@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import User from './components/User';
 import Tenant from './components/Tenant';
-import Content from './components/Content';
+import ContentScreen from './components/ContentScreen';
 import UserScreen from './components/UserScreen';
 import UserDetail from './components/UserDetail';
 import './App.css';
@@ -24,7 +24,7 @@ class App extends Component  {
                         <Route exact path='/' component={UserScreen} />
                         <Route path="/user/:id" component={UserDetail}/>
                         <Route path='/tenant' component={Tenant} />
-                        <Route path='/content' component={Content} />
+                        <Route path='/content' component={ContentScreen} />
                     </Switch>
                 </div>
             </Router>

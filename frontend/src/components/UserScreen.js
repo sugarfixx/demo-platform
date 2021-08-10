@@ -12,7 +12,8 @@ class UserScreen extends Component {
     render() {
         return (
             <React.Fragment>
-                <h1>User</h1>
+                <h1>Users</h1>
+                <p>Select one of the users bellow to continue</p>
                 <UserList dataList={this.state.users} />
             </React.Fragment>
         )

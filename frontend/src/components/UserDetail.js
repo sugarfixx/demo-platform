@@ -18,14 +18,13 @@ class UserDetail extends Component {
         const {params} = this.props.match;
         return (
             <React.Fragment>
-                <h1>User details for user {this.state.user.email}</h1>
-                <span>Home Tenant:
+                <h1>User details for user: {this.state.user.email}</h1>
+                <span>User {this.state.user.email} is within the user population and can access data from the following tenants:
+                <br/> Access granted as local population :
                     <Link to={{
                         pathname: '/content/',
                         state: { bearer: this.state.user.id + '.' + this.state.homeTenant.id}
-                    }}
-                          key={this.state.homeTenant.id}
-                    >
+                    }}>
                         <span>{this.state.homeTenant.name}</span>
                     </Link>
 
