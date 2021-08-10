@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import User from './components/User';
 import Tenant from './components/Tenant';
 import ContentScreen from './components/ContentScreen';
 import UserScreen from './components/UserScreen';
@@ -15,8 +14,6 @@ class App extends Component  {
                     <nav className="navbar navbar-expand-lg navbar-light bg-light">
                         <ul className="navbar-nav mr-auto">
                             <li><Link to={'/'} className="nav-link"> Home </Link></li>
-                            <li><Link to={'/tenant'} className="nav-link">Tenant</Link></li>
-                            <li><Link to={'/content'} className="nav-link">Content</Link></li>
                         </ul>
                     </nav>
                     <hr />
