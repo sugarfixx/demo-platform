@@ -30,7 +30,6 @@ class ContentScreen extends Component {
             .then((data) => {
                 if (data.original) {
                     let content = data.original;
-
                     this.setState({contents:content })
                 }
                 else {

@@ -1,9 +1,7 @@
 import React from 'react';
 
 const ContentList = (props) => {
-
     const renderList = ({dataList}) => {
-        console.log(dataList);
         if (dataList) {
             return dataList.map((content) => {
                 return (
@@ -15,7 +13,6 @@ const ContentList = (props) => {
                             <br/>
                             {content.commands}
                         </div>
-
                     </li>
                 )
             })
