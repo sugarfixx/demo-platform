@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom';
 
 const TenantList = (props) => {
     const renderList = ({dataList, user}) => {
-
         if (dataList && dataList.length > 0) {
             return dataList.map((item) => {
                 return (

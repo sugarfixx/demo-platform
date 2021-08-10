@@ -14,7 +14,6 @@ class UserDetail extends Component {
         }
     }
     render() {
-        // console.log(this.state.user);
         const {params} = this.props.match;
         return (
             <React.Fragment>
